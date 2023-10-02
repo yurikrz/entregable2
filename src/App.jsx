@@ -4,7 +4,7 @@ import './App.css'
 import axios from 'axios'
 import WeatherContainer from './components/WeatherContainer.jsx'
 import WeatherIcons from './utilis/WeatherIcons.js'
-import Loader from './components/loader.jsx'
+// import Loader from './components/loader.jsx'
 
 
 function App() {
