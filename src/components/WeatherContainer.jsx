@@ -35,11 +35,12 @@ const WeatherContainer = ({weather, weatherIcon,searchWeatherbyCity}) => {
 
   return (
     <section className='text-center grid gap-5 items-center justify-items-center'>
+
         <form className="w-full" action="">
           <input type="search" className="input" placeholder='Buscar una ciudad' onKeyDown={handleKeyDown}/>
         </form>
-        <span className='text-red-700'>{error}</span>
-
+        <span className='text-[#e11c2c] w-[50%]'>{error}</span>
+        
         <h3 className='text-xl font-semibold [text-shadow:_0px_4px_4px_rgba(255,255,255,0.25)]'>{weather.name}, {weather.sys.country}</h3>
         <div className='grid gap-5 sm:grid-cols-[1fr_auto]'>
             {/* Seccion superior */}
