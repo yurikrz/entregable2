@@ -4,13 +4,15 @@ import './App.css'
 import axios from 'axios'
 import WeatherContainer from './components/WeatherContainer.jsx'
 import WeatherIcons from './utilis/WeatherIcons.js'
-import Loader from './components/Loader.jsx'
+import Loader from './components/loader'
+
 
 function App() {
   const [weather, setWeather] = useState(null)
   const [weatherIcon, setWeatherIcon] = useState(null)
   const [weatherBg, setWeatherBg] = useState(null)
   const [showLoader, setShowLoader] = useState(true)
+  const [theme, setTheme] = useState("light")
   const apiKey = "4777b5d3f0976a6ac57eed4499a5724b"
 
   const success = (pos) =>{
@@ -28,30 +30,19 @@ function App() {
   }
 
   const searchWeatherbyCity = async (value) =>{
-    // try{
-    //   const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${apiKey}`)
-    //   const data = await response.json()
-      
-    //   if (response.status !== 200) {
-    //     throw data
-    //   }
-      
-    //   setWeather(data)
-    //   updateIconBg(data)
-    //   return data
-    // } catch (err) {
-    //   throw err
-    // }
-    
     try{
+      setShowLoader(true)
       const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${apiKey}`)
+      
       if (result.status !== 200) {
+        setShowLoader(false)
         throw result.data
       }
       setWeather(result.data)
       updateIconBg(result.data)
-      
+      setShowLoader(false)
     } catch (err) {
+      setShowLoader(false)
       throw err
     }
   }
@@ -64,17 +55,14 @@ function App() {
     setWeatherBg(Icon.background)
   }
 
-  // useEffect(()=>{
-  //   updateIconBg()
-  // },[weather])
-
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(success)
   },[])
 
   return (
     // 
-    <main className={`font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 bg-[url('${weatherBg}')] bg-cover bg-no-repeat`}>
+    // <main className={`font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 bg-[url('${weatherBg}')] bg-cover bg-no-repeat`}>
+    <main className="font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4" style={{backgroundImage: `url('${weatherBg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
       {
         showLoader && <Loader /> 
       }
