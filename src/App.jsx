@@ -24,7 +24,7 @@ function App() {
       .then(({data}) => {
         setWeather(data)
         updateIconBg(data)
-        setShowLoader(false)
+        waitShowLoader(false)
       })
       .catch(err => console.log(err))
   }
@@ -35,18 +35,24 @@ function App() {
       const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${apiKey}`)
       
       if (result.status !== 200) {
-        setShowLoader(false)
+        waitShowLoader(false)
         throw result.data
       }
       setWeather(result.data)
       updateIconBg(result.data)
-      setShowLoader(false)
+      waitShowLoader(false)
     } catch (err) {
-      setShowLoader(false)
+      waitShowLoader(false)
       throw err
     }
   }
 
+  const waitShowLoader = (status)=>{
+    setTimeout(()=>{
+      setShowLoader(status)
+    },500)
+  }
+  
   const updateIconBg = (data) =>{
     const Icon = WeatherIcons.find((weatherIcon) => weatherIcon.id === data?.weather[0].icon.toLowerCase().slice(0,2))
     const isDay = data?.dt >= data?.sys.sunrise && data?.dt < data?.sys.sunset
