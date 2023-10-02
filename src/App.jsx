@@ -4,7 +4,7 @@ import './App.css'
 import axios from 'axios'
 import WeatherContainer from './components/WeatherContainer.jsx'
 import WeatherIcons from './utilis/WeatherIcons.js'
-import Loader from './components/loader'
+import Loader from './components/loader.jsx'
 
 
 function App() {
@@ -60,8 +60,6 @@ function App() {
   },[])
 
   return (
-    // 
-    // <main className={`font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 bg-[url('${weatherBg}')] bg-cover bg-no-repeat`}>
     <main className="font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 dark:text-white" style={{backgroundImage: `url('${weatherBg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
       {
         showLoader && <Loader /> 
