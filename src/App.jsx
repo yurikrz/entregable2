@@ -60,7 +60,7 @@ function App() {
   },[])
 
   return (
-    <main className="font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 dark:text-white" style={{backgroundImage: `url('${weatherBg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
+    <main className="font-[Lato] flex justify-center items-center min-h-screen text-black px-2 py-4 dark:text-white" style={{backgroundImage: `url("${weatherBg}")`, backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
       {
         showLoader && <Loader /> 
       }
