@@ -35,8 +35,6 @@ const WeatherContainer = ({weather, weatherIcon,searchWeatherbyCity}) => {
 
   return (
     <section className='text-center grid gap-5 items-center justify-items-center'>
-        <img className='h-[24px] w-[24px]' src='/light.svg' alt="" />
-
         <form className="w-full" action="">
           <input type="search" className="input" placeholder='Buscar una ciudad' onKeyDown={handleKeyDown}/>
         </form>
@@ -49,7 +47,6 @@ const WeatherContainer = ({weather, weatherIcon,searchWeatherbyCity}) => {
               <h4 className='col-span-2 text-lg capitalize'>{weather.weather[0].description}</h4>
               <span className='text-5xl'>{changeUnitTemp(weather.main.temp)}</span>
               <img src={weatherIcon} alt="" />
-              {/* <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`} alt="" />  */}
             </article>
 
             {/* Seccion inferior */}
